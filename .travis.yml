@@ -1,0 +1,48 @@
+git:
+  depth: false
+
+matrix:
+  include:
+
+
+###############################################################################
+# OSX Release
+###############################################################################
+
+    - os: osx
+      language: cpp
+      cache: ccache
+      osx_image: xcode10.1
+      install:
+        - export TZ=GMT-3
+        - sudo systemsetup -gettimezone
+        - brew update
+        - brew install ccache
+        - export PATH="/usr/local/opt/ccache/libexec:$PATH"
+        - brew upgrade --ignore-pinned icu4c
+        - brew uninstall --ignore-dependencies sfcgal
+        - brew uninstall --ignore-dependencies cgal
+        - brew uninstall --ignore-dependencies node
+        - brew uninstall --ignore-dependencies postgresql
+        - brew uninstall --ignore-dependencies postgis
+        - wget http://download.qt.io/official_releases/qt/5.15/5.15.0/single/qt-everywhere-src-5.15.0.tar.xz
+        - tar xvf qt-everywhere-src-5.15.0.tar.xz
+        - export QT5_INSTALL_DIR=$(pwd)/qt5-install
+        - echo $QT5_INSTALL_DIR
+      env: 
+        - BUILD_TYPE=Release
+        - OS_FOLDER=mac
+      script:
+         - mkdir qt5-build
+        - cd qt5-build
+        - ../qt-everywhere-src-5.14.2/configure  -release -opensource -static -prefix=$QT5_INSTALL_DIR -nomake examples -nomake tests -nomake tools -accessibility -no-sql-sqlite -qt-zlib -qt-libpng -qt-libjpeg -confirm-license -platform macx-clang
+        - make -j1
+        - make install
+
+      after_success:
+
+
+
+
+
+
