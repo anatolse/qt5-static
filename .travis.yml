@@ -16,7 +16,7 @@ matrix:
       install:
         - export TZ=GMT-3
         - sudo systemsetup -gettimezone
-        - brew update
+        #- brew update
         - brew install ccache
         - export PATH="/usr/local/opt/ccache/libexec:$PATH"
         - brew upgrade --ignore-pinned icu4c
