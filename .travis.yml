@@ -17,16 +17,16 @@ matrix:
         - export TZ=GMT-3
         - sudo systemsetup -gettimezone
         #- brew update
-        - brew install ccache
-        - export PATH="/usr/local/opt/ccache/libexec:$PATH"
-        - brew upgrade --ignore-pinned icu4c
-        - brew uninstall --ignore-dependencies sfcgal
-        - brew uninstall --ignore-dependencies cgal
-        - brew uninstall --ignore-dependencies node
-        - brew uninstall --ignore-dependencies postgresql
-        - brew uninstall --ignore-dependencies postgis
+        #- brew install ccache
+        #- export PATH="/usr/local/opt/ccache/libexec:$PATH"
+        #- brew upgrade --ignore-pinned icu4c
+        #- brew uninstall --ignore-dependencies sfcgal
+        #- brew uninstall --ignore-dependencies cgal
+        #- brew uninstall --ignore-dependencies node
+        #- brew uninstall --ignore-dependencies postgresql
+        #- brew uninstall --ignore-dependencies postgis
         - wget http://download.qt.io/official_releases/qt/5.15/5.15.0/single/qt-everywhere-src-5.15.0.tar.xz
-        - tar xvf qt-everywhere-src-5.15.0.tar.xz > /dev/null
+        - tar -xvf qt-everywhere-src-5.15.0.tar.xz > /dev/null
         - export QT5_INSTALL_DIR=$(pwd)/qt5-install
         - echo $QT5_INSTALL_DIR
       script:
