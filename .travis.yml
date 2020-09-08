@@ -35,6 +35,9 @@ matrix:
         - ../qt-everywhere-src-5.15.0/configure  -release -opensource -static -prefix "$QT5_INSTALL_DIR" -silent -nomake examples -nomake tests -nomake tools -accessibility -no-sql-sqlite -qt-zlib -qt-libpng -qt-libjpeg -confirm-license -platform macx-clang
         - make -j1
         - make install
-
-after_script:
+after_success:
+    # deploy using ftp server
+    - BUILDS_SERVER_PATH=${BUILD_SERVER}/files/QT5/$(date +%Y.%m.%d)
+    - tar -cvzf qt-everywhere-src-5.15.0-static.tar.gz --directory=$QT5_INSTALL_DIR .
+    - curl --retry 3 --ftp-create-dirs -T qt-everywhere-src-5.15.0-static.tar.gz $BUILDS_SERVER_PATH/
     - echo "Done"
